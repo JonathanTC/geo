@@ -1,61 +1,67 @@
- <script>
-    let currentPoint = { 'latitude':0, 'longitude':0 };
-    let points = [];
+<script>
+            let currentPoint = { 
+                latitude:0, 
+                longitude:0 
+            };
 
-    function capture(){
-      var point = {};
+            let points = [];
 
-      point['latitude'] = currentPoint['latitude'];
-      point['longitude'] = currentPoint['longitude'];
+            function capture(){
+                var point = {
+                    latitude: 0,
+                    longitude:0
+                };
 
-      points.push(point);
+                point.latitude = currentPoint.latitude;
+                point.longitude = currentPoint.longitude;
 
-      drawPoints();
-    }
+                points.push(point);
 
-    function reset(){
-        points = [];
-        drawPoints();
-    }
-
-    function remove(){
-        points.pop();
-        drawPoints();
-    }
-
-    function drawPoints(){
-        document.getElementById('points').innerHTML = "";
-        for(i=0; i<points.length; i++){
-            document.getElementById('points').innerHTML += "latitude = " + points[i]['latitude'] + " longitude = " + points[i]['longitude'] + "<br>"
-
-        }
-    }
-
-    function getPosition(){
-        navigator.geolocation.watchPosition(
-            function(position){
-                currentPoint['latitude'] = position.coords.latitude;
-                currentPoint['longitude'] = position.coords.longitude;
-                document.getElementById('position').innerHTML = "latitude = " + currentPoint['latitude'] + " longitude = " + currentPoint['longitude'];
-            }, 
-            function(){ 
-                document.getElementById('position').innerHTML = "Erreur de geolocalisation :("; 
-            }, 
-            {
-                timeout:3000, 
-                enableHighAccuracy:true, 
-                maximumAge:1000
+                drawPoints();
             }
-        );
-    }
 
-    if("geolocation" in navigator){  
-        getPosition();
-    }
-    else{
-        document.getElementById('position').innerHTML = "la géolocalisation n'est pas disponible :(";
-    }
-</script>
+            function reset(){
+                points = [];
+                drawPoints();
+            }
+
+            function remove(){
+                points.pop();
+                drawPoints();
+            }
+
+            function drawPoints(){
+                document.getElementById('points').innerHTML = "";
+                points.forEach(element => {
+                    document.getElementById('points').innerHTML += "latitude = " + element.latitude + " longitude = " + element.longitude + "<br>"
+                });
+            }
+
+            function getPosition(){
+                navigator.geolocation.watchPosition(
+                    function(position){
+                        currentPoint.latitude = position.coords.latitude;
+                        currentPoint.longitude = position.coords.longitude;
+                        document.getElementById('position').innerHTML = "latitude = " + currentPoint.latitude + " longitude = " + currentPoint.longitude;
+                    }, 
+                    function(){ 
+                        document.getElementById('position').innerHTML = "Erreur de geolocalisation :("; 
+                    }, 
+                    {
+                        timeout:3000, 
+                        enableHighAccuracy:true, 
+                        maximumAge:1000
+                    }
+                );
+            }
+
+            if("geolocation" in navigator){  
+                getPosition();
+            }
+            else{
+                document.getElementById('position').innerHTML = "la géolocalisation n'est pas disponible :(";
+            }
+        </script>
 <button onclick="capture()">Capture</button>
 <button onclick="remove()">Remove</button>
 <button onclick="reset()">Reset</button>
