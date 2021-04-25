@@ -1,10 +1,11 @@
-<script>
+        <script>
             let currentPoint = { 
                 latitude:0, 
                 longitude:0 
             };
 
             let points = [];
+
 
             function capture(){
                 var point = {
@@ -16,8 +17,18 @@
                 point.longitude = currentPoint.longitude;
 
                 points.push(point);
-
                 drawPoints();
+
+                if(points.length >=2){
+                    var alphaA = points[points.length-2].longitude * (Math.PI / 180);
+                    var alphaB = points[points.length-1].longitude * (Math.PI / 180);
+                    var phiA = points[points.length-2].latitude * (Math.PI / 180);
+                    var phiB = points[points.length-1].latitude * (Math.PI / 180);
+
+                    var delta = alphaB - alphaA ;
+                    var distance = Math.acos( Math.sin(phiA) * Math.sin(phiB) + Math.cos(phiA) * Math.cos(phiB) * Math.cos(delta) ) * 6378137;
+                    drawDistance(distance);
+                }
             }
 
             function reset(){
@@ -35,6 +46,10 @@
                 points.forEach(element => {
                     document.getElementById('points').innerHTML += "latitude = " + element.latitude + " longitude = " + element.longitude + "<br>"
                 });
+            }
+
+            function drawDistance(distance){
+                document.getElementById('distance').innerHTML = distance + " km";
             }
 
             function getPosition(){
@@ -67,3 +82,4 @@
 <button onclick="reset()">Reset</button>
 <span id="position"></span><br>
 <span id="points"></span>
+<span id="distance"></span>
