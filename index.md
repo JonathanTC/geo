@@ -19,9 +19,10 @@
 
     function drawPoints(){
         document.getElementById('points').innerHTML = "";
-        points.forEach(element => {
-            document.getElementById('points').innerHTML += "latitude = " + element['latitude'] + " longitude = " + element['longitude'] + "<br>"
-        });
+        for(i=0; i<points.length; i++){
+            document.getElementById('points').innerHTML += "latitude = " + points[i]['latitude'] + " longitude = " + points[i]['longitude'] + "<br>"
+
+        }
     }
 
     function getPosition(){
