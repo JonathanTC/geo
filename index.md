@@ -1,5 +1,5 @@
-<script>
-    let currentPoint = [ 0, 0 ];
+ <script>
+    let currentPoint = { 'latitude':0, 'longitude':0 };
     let points = [];
 
     function capture(){
@@ -20,16 +20,16 @@
     function drawPoints(){
         document.getElementById('points').innerHTML = "";
         points.forEach(element => {
-            document.getElementById('points').innerHTML += "latitude = " + element[0] + " longitude = " + element[1] + "<br>"
+            document.getElementById('points').innerHTML += "latitude = " + element['latitude'] + " longitude = " + element['longitude'] + "<br>"
         });
     }
 
     function getPosition(){
         navigator.geolocation.watchPosition(
             function(position){
-                currentPoint[0] = position.coords.latitude;
-                currentPoint[1] = position.coords.longitude;
-                document.getElementById('position').innerHTML = "latitude = " + currentPoint[0] + " longitude = " + currentPoint[1];
+                currentPoint['latitude'] = position.coords.latitude;
+                currentPoint['longitude'] = position.coords.longitude;
+                document.getElementById('position').innerHTML = "latitude = " + currentPoint['latitude'] + " longitude = " + currentPoint['longitude'];
             }, 
             function(){ 
                 document.getElementById('position').innerHTML = "Erreur de geolocalisation :("; 
