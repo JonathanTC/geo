@@ -1,8 +1,17 @@
 <script>
     function getPosition(){
-        navigator.geolocation.watchPosition(function(position){
-            document.getElementById('position').innerHTML = "latitude = " + position.coords.latitude + " longitude = " + position.coords.longitude
-        });
+        navigator.geolocation.watchPosition(
+            function(position){
+                document.getElementById('position').innerHTML = "latitude = " + position.coords.latitude + " longitude = " + position.coords.longitude
+            }, 
+            function(){ 
+                document.getElementById('position').innerHTML = "Erreur de geolocalisation :("; 
+            },
+            {
+                timeout:3000, 
+                enableHighAccuracy:true, 
+                maximumAge:1000
+            });
     }
     if("geolocation" in navigator){
         getPosition();
