@@ -3,8 +3,14 @@
     let points = [];
 
     function capture(){
-        points.push(currentPoint);
-        drawPoints();
+      var point = {};
+
+      point['latitude'] = currentPoint['latitude'];
+      point['longitude'] = currentPoint['longitude'];
+
+      points.push(point);
+
+      drawPoints();
     }
 
     function reset(){
