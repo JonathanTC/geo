@@ -1,15 +1,16 @@
 <script>
     function getPosition(){
-        navigator.geolocation.getCurrentPosition(function(position){
+        navigator.geolocation.watchPosition(function(position){
             document.getElementById('position').innerHTML = "latitude = " + position.coords.latitude + " longitude = " + position.coords.longitude
         });
     }
     if("geolocation" in navigator){
-        document.getElementById('position').innerHTML = "la géolocalisation est disponible :)";   
+        //document.getElementById('position').innerHTML = "la géolocalisation est disponible :)";
+        getPosition();
     }
     else{
         document.getElementById('position').innerHTML = "la géolocalisation n'est pas disponible :(";
     }
 </script>
-<button onclick="getPosition()">Localiser</button>
+
 <span id="position"></span>
