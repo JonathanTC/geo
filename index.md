@@ -20,13 +20,13 @@
         drawPoints();
 
         if(points.length >=2){
-            var alphaA = points[points.length-2].longitude * (Math.PI / 180);
-            var alphaB = points[points.length-1].longitude * (Math.PI / 180);
-            var phiA = points[points.length-2].latitude * (Math.PI / 180);
-            var phiB = points[points.length-1].latitude * (Math.PI / 180);
+            var alphaA = points[points.length-2].longitude;
+            var alphaB = points[points.length-1].longitude;
+            var phiA = points[points.length-2].latitude;
+            var phiB = points[points.length-1].latitude;
 
             var delta = alphaB - alphaA ;
-            var distance = Math.acos( (Math.sin(phiA) * Math.sin(phiB)) + (Math.cos(phiA) * Math.cos(phiB) * Math.cos(delta)) ) * 6378.137;
+            var distance = Math.acos( (Math.sin(phiA) * Math.sin(phiB)) + (Math.cos(phiA) * Math.cos(phiB) * Math.cos(delta)) ) * 6378137;
             drawDistance(distance);
         }
     }
