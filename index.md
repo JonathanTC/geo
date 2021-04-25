@@ -6,6 +6,7 @@
 
     let points = [];
 
+
     function capture(){
         var point = {
             latitude: 0,
