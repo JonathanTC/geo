@@ -24,10 +24,14 @@
             var alphaB = points[points.length-1].longitude;
             var phiA = points[points.length-2].latitude;
             var phiB = points[points.length-1].latitude;
+            
+            // calcule de la distance à l'aide de la méthode de pythagore
+            var x = (alphaB - alphaA) * Math.cos((phiA + phiB) / 2);
+            var y = phiB - phiA;
+            var z = Math.sqrt(Math.pow(x, 2) + Math.pow(y, 2));
+            var d = 1.852 * 60 * z;
 
-            var delta = alphaB - alphaA ;
-            var distance = Math.acos( (Math.sin(phiA) * Math.sin(phiB)) + (Math.cos(phiA) * Math.cos(phiB) * Math.cos(delta)) ) * 6378.137;
-            drawDistance(distance);
+            drawDistance(d);
         }
     }
 
