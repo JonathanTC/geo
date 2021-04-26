@@ -20,12 +20,15 @@
         drawPoints();
 
         if(points.length >=2){
-            var alphaA = points[points.length-2].longitude;
-            var alphaB = points[points.length-1].longitude;
-            var phiA = points[points.length-2].latitude;
-            var phiB = points[points.length-1].latitude;
+            // coordonnées du point A
+            var alphaA = points[points.length-2].latitude; // latitude
+            var phiA = points[points.length-2].longitude; // longitude
+
+            // coordonnées du point B
+            var alphaB = points[points.length-1].latitude; // latitude 
+            var phiB = points[points.length-1].longitude; // longitude
             
-            // calcule de la distance à l'aide de la méthode de pythagore
+            // calcule de la distance
             var x = (alphaB - alphaA) * Math.cos((phiA + phiB) / 2);
             var y = phiB - phiA;
             var z = Math.sqrt(Math.pow(x, 2) + Math.pow(y, 2));
