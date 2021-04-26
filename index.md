@@ -1,7 +1,7 @@
 <script>
     let currentPoint = { 
         latitude:0, 
-        longitude:0 
+        longitude:0,
     };
 
     let points = [];
@@ -33,7 +33,7 @@
             var y = phiB - phiA;
             var z = Math.sqrt(Math.pow(x, 2) + Math.pow(y, 2));
             var d = 1.852 * 60 * z;
-
+            
             drawDistance(d);
         }
     }
@@ -64,7 +64,8 @@
             function(position){
                 currentPoint.latitude = position.coords.latitude;
                 currentPoint.longitude = position.coords.longitude;
-                document.getElementById('position').innerHTML = "latitude = " + currentPoint.latitude + " longitude = " + currentPoint.longitude;
+                document.getElementById('position').innerHTML = "latitude = " + currentPoint.latitude + " longitude = " + currentPoint.longitude + " precision = " + position.coords.accuracy;
+                
             }, 
             function(){ 
                 document.getElementById('position').innerHTML = "Erreur de geolocalisation :("; 
