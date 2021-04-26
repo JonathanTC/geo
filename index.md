@@ -26,7 +26,7 @@
             var phiB = points[points.length-1].latitude;
 
             var delta = alphaB - alphaA ;
-            var distance = Math.acos( (Math.sin(phiA) * Math.sin(phiB)) + (Math.cos(phiA) * Math.cos(phiB) * Math.cos(delta)) ) * 6378137;
+            var distance = Math.acos( (Math.sin(phiA) * Math.sin(phiB)) + (Math.cos(phiA) * Math.cos(phiB) * Math.cos(delta)) ) * 6378.137;
             drawDistance(distance);
         }
     }
